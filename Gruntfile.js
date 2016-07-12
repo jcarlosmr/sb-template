@@ -1,6 +1,8 @@
+'use strict';
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
 module.exports = function(grunt) {
+
     require('time-grunt')(grunt);
     var serveStatic = require('serve-static');
     // CONFIGURE GRUNT
@@ -110,14 +112,14 @@ module.exports = function(grunt) {
             },
             feature_dependencies: {
                 files: {
-                    '<%= appDir.app %>/index.html': ['<%= appDir.app %>/feature/**/*.js', '<%= appDir.app %>/feature/**/*.css'],
+                    '<%= appDir.app %>/index.html': [
+                        '<%= appDir.app %>/feature/**/*.js',
+                        '<%= appDir.app %>/feature/**/*.css',
+                        '<%= appDir.app %>/common/**/*.js',
+                        '<%= appDir.app %>/common/**/*.css'
+                    ],
                 }
             },
-            public_dependencies: {
-                files: {
-                    '<%= appDir.app %>/index.html': ['<%= appDir.app %>/public/**/*.js', '<%= appDir.app %>/public/**/*.css'],
-                }
-            }
         },
 
         watch: {
