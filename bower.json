@@ -1,0 +1,33 @@
+{
+  "name": "sb-template",
+  "description": "Template Base con SB Admin 2",
+  "main": "app.js",
+  "authors": [
+    "JcMR"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Template"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "startbootstrap-sb-admin-2": "^1.0.8"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.js",
+        "dist/css/bootstrap.css",
+        "less/bootstrap.less"
+      ]
+    }
+  }
+}
