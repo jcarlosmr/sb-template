@@ -1,7 +1,8 @@
-'use strict';
+
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
 module.exports = function(grunt) {
+    'use strict';
 
     require('time-grunt')(grunt);
     var serveStatic = require('serve-static');
@@ -26,7 +27,11 @@ module.exports = function(grunt) {
         },
 
         jshint: {
-            files: ['Gruntfile.js', '<%= appDir.app %>/feature/**/*.js'],
+            files: [
+                'Gruntfile.js',
+                '<%= appDir.app %>/feature/**/*.js',
+                '<%= appDir.app %>/common/**/*.js'
+            ],
             options: {
                 // more options here if you want to override JSHint defaults
                 globals: {
@@ -59,7 +64,7 @@ module.exports = function(grunt) {
             options: {
                 port: 9000,
                 // Change this to '0.0.0.0' to access the server from outside.
-                hostname: 'localhost',
+                hostname: '0.0.0.0',
                 livereload: 35729
             },
             livereload: {
