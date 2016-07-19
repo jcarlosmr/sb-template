@@ -3,7 +3,7 @@
 // all configuration goes inside this function
 module.exports = function(grunt) {
     'use strict';
-
+    require('load-grunt-tasks')(grunt);
     require('time-grunt')(grunt);
     var serveStatic = require('serve-static');
     // CONFIGURE GRUNT
@@ -18,6 +18,43 @@ module.exports = function(grunt) {
         // get the configuration info from package.json file
         // this way we can use things like name and version (pkg.name)
         pkg: grunt.file.readJSON('package.json'),
+
+        watch: {
+            bower: {
+                files: ['bower.json'],
+                tasks: ['wiredep']
+            },
+            js: {
+                files: ['<%= jshint.files %>'],
+                tasks: ['newer:jshint', 'injector'],
+                options: {
+                    livereload: '<%= connect.options.livereload %>'
+                },
+            },
+            html: {
+                files: ['<%= appDir.app %>/**/*.html'],
+                options: {
+                    livereload: '<%= connect.options.livereload %>'
+                },
+            },
+            gruntfile: {
+                files: ['Gruntfile.js']
+            }
+        },
+
+        clean: {
+          dist: {
+            files: [{
+              dot: true,
+              src: [
+                '.tmp',
+                '<%= yeoman.dist %>/{,*/}*',
+                '!<%= yeoman.dist %>/.git*'
+              ]
+            }]
+          },
+          server: '.tmp'
+        },
 
         wiredep: {
             js: {
@@ -47,24 +84,11 @@ module.exports = function(grunt) {
             build: {}
         },
 
-//        connect: {
-//            all: {
-//                options: {
-////                    open: true,
-//                    port: 9000,
-//                    // Change this to '0.0.0.0' to access the server from outside.
-//                    hostname: 'localhost',
-//                    livereload: 35729,
-//                    base: 'app'
-//                },
-//            },
-//        },
-// The actual grunt server settings
         connect: {
             options: {
                 port: 9000,
                 // Change this to '0.0.0.0' to access the server from outside.
-                hostname: '0.0.0.0',
+                hostname: 'localhost',
                 livereload: 35729
             },
             livereload: {
@@ -76,10 +100,6 @@ module.exports = function(grunt) {
                             connect().use(
                                 '/bower_components',
                                 serveStatic('./bower_components')
-                            ),
-                            connect().use(
-                                '/<%= appDir.app %>/feature',
-                                serveStatic('./<%= appDir.app %>/feature')
                             ),
                             serveStatic(appConfig.app)
                         ];
@@ -127,27 +147,6 @@ module.exports = function(grunt) {
             },
         },
 
-        watch: {
-            options: {
-                livereload: true,
-            },
-            js: {
-                files: ['<%= jshint.files %>'],
-                tasks: ['newer:jshint', 'injector']
-
-            },
-            html: {
-                files: ['<%= appDir.app %>/**/*.html']
-            },
-            bower: {
-                files: ['bower.json'],
-                tasks: ['wiredep']
-            },
-            gruntfile: {
-                files: ['Gruntfile.js']
-            }
-        }
-
     });
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
@@ -156,22 +155,11 @@ module.exports = function(grunt) {
         }
 
         grunt.task.run([
-            'wiredep',
             'injector',
             'connect:livereload',
             'watch'
         ]);
     });
-
-    // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-injector');
-    grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-wiredep');
 
     // Default task(s).
     grunt.registerTask('default', ['serve']);

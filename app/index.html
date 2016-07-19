@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>SB Admin 2 - Bootstrap Admin Theme with Angular</title>
 
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="bower_components/morrisjs/morris.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
     <link rel="stylesheet" href="bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css" />
-    <link rel="stylesheet" href="bower_components/morris.js/morris.css" />
     <!-- endbower -->
 
     <!-- injector:css -->
@@ -47,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ui-sref="main">SB Admin v2.0</a>
+                <a class="navbar-brand">SB Admin v2.0 with Angular 1.5</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -279,18 +278,6 @@
                             <a ui-sref="main"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
@@ -300,22 +287,22 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
+                                    <a ui-sref="panelswells">Panels and Wells</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Buttons</a>
+                                    <a ui-sref="buttons">Buttons</a>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Notifications</a>
+                                    <a ui-sref="notifications">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="typography.html">Typography</a>
+                                    <a ui-sref="typography">Typography</a>
                                 </li>
                                 <li>
-                                    <a href="icons.html"> Icons</a>
+                                    <a ui-sref="icons"> Icons</a>
                                 </li>
                                 <li>
-                                    <a href="grid.html">Grid</a>
+                                    <a ui-sref="grid">Grid</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -368,11 +355,18 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <div ui-view></div>
+
+        <div id="page-wrapper">
+            <div ui-view></div>
+        </div>
+        <!-- /#page-wrapper -->
+
     </div>
     <!-- /#wrapper -->
 
     <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
@@ -386,10 +380,6 @@
     <script src="bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
     <script src="bower_components/flot.tooltip/js/jquery.flot.tooltip.js"></script>
     <script src="bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/morris.js/morris.js"></script>
-    <script src="bower_components/angular-morris-chart/src/angular-morris-chart.min.js"></script>
     <!-- endbower -->
 
     <!-- injector:js -->
